@@ -1,0 +1,4 @@
+First of all you have to create a Express app. To create app you need to create a project folder and follow the procedure sequentially.
+After creating app successfully, run command 'npm init' and 'git init', following back now create two folder name public and server.
+Now create a server to run your public file, server.js. Now create a html page after that.After this install express module, and add engines command
+start script in package.json.
