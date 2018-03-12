@@ -7,5 +7,17 @@
 </head>
   <body>
     <p>Welcome to First Real Time Webapp using Socket.IO.</p>
+<script type="text/javascript" src="/socket.io/socket.io.js">
+
+</script>
+<script type="text/javascript">
+  var socket=io();  //used for open a new connection between client and server
+socket.on('connect',()=>{
+  console.log('Connected to Server,');
+});
+socket.on('disconnect',()=>{
+  console.log('Disconnected from Server.');
+});
+</script>
   </body>
 </html>
