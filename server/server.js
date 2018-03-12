@@ -2,6 +2,9 @@ const path=require('path');
 const http=require('http');
 const express =require('express');
 const socketIO=require('socket.io');
+
+const {generateMessage} = require('./utils/message');
+
 const publicPath=path.join(__dirname,'../public');
 const port=process.env.PORT || 3000;
 
@@ -32,24 +35,12 @@ io.on('connection',(socket)=>{
 //   console.log('createEmail',newEmail);
 // });
 //Below code will emit a message who first join the chat App
-socket.emit('newMessage',{
-  from:'Admin',
-  text:'Welcome to chat App.',
-  createdAt:new Date()
-});
+socket.emit('newMessage',generateMessage('Admin', 'Welcome to the chat app'));
 //Below code will give notification if any new user joins the chat app
-socket.broadcast.emit('newMessage',{
-  from:'Admin',
-  text:'New User joined',
-  createdAt:new Date()
-});
+socket.broadcast.emit('newMessage',generateMessage('Admin', 'New user joined'));
 socket.on('createMessage',(message)=>{
   console.log('createMessage',message);
-  io.emit('newMessage',{
-    from:message.from,
-    text:message.text,
-    createdAt:new Date().getTime()
-  });
+  io.emit('newMessage',generateMessage(message.from,message.text));
 //------Below commented code will broadcasting the message except the one who broadcast
   // socket.broadcast.emit('newMessage',{
   //   from:message.from,
