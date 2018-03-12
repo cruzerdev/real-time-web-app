@@ -21,18 +21,23 @@ io.on('connection',(socket)=>{
 //   text:"Voila!",
 //   createdAt:123
 // });
-
-socket.emit('newMessage',{
-  from:'deva@gmail.com',
-  text:"Voila!, Devanshu You got the concept.",
-  createdAt:new Date()
-});
+//--------------New message emit to clients by server
+// socket.emit('newMessage',{
+//   from:'deva@gmail.com',
+//   text:"Voila!, Devanshu You got the concept.",
+//   createdAt:new Date()
+// });
 
 // socket.on('createEmail',(newEmail)=>{
 //   console.log('createEmail',newEmail);
 // });
 socket.on('createMessage',(message)=>{
   console.log('createMessage',message);
+  io.emit('newMessage',{
+    from:message.from,
+    text:message.text,
+    createdAt:new Date().getTime()
+  });
 });
   socket.on('disconnect',()=>{
     console.log('New User Disconnected.');
