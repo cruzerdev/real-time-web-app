@@ -31,6 +31,18 @@ io.on('connection',(socket)=>{
 // socket.on('createEmail',(newEmail)=>{
 //   console.log('createEmail',newEmail);
 // });
+//Below code will emit a message who first join the chat App
+socket.emit('newMessage',{
+  from:'Admin',
+  text:'Welcome to chat App.',
+  createdAt:new Date()
+});
+//Below code will give notification if any new user joins the chat app
+socket.broadcast.emit('newMessage',{
+  from:'Admin',
+  text:'New User joined',
+  createdAt:new Date()
+});
 socket.on('createMessage',(message)=>{
   console.log('createMessage',message);
   io.emit('newMessage',{
@@ -38,6 +50,12 @@ socket.on('createMessage',(message)=>{
     text:message.text,
     createdAt:new Date().getTime()
   });
+//------Below commented code will broadcasting the message except the one who broadcast
+  // socket.broadcast.emit('newMessage',{
+  //   from:message.from,
+  //   text:message.text,
+  //   createdAt:new Date().getTime()
+  // });
 });
   socket.on('disconnect',()=>{
     console.log('New User Disconnected.');
