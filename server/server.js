@@ -15,6 +15,25 @@ var io = socketIO(server);
 app.use(express.static(publicPath));
 io.on('connection',(socket)=>{
   console.log('New User Connected');
+
+// socket.emit('newEmail',{
+//   from:'dev@gmail.com',
+//   text:"Voila!",
+//   createdAt:123
+// });
+
+socket.emit('newMessage',{
+  from:'deva@gmail.com',
+  text:"Voila!, Devanshu You got the concept.",
+  createdAt:new Date()
+});
+
+// socket.on('createEmail',(newEmail)=>{
+//   console.log('createEmail',newEmail);
+// });
+socket.on('createMessage',(message)=>{
+  console.log('createMessage',message);
+});
   socket.on('disconnect',()=>{
     console.log('New User Disconnected.');
   });
