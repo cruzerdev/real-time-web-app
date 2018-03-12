@@ -38,9 +38,10 @@ io.on('connection',(socket)=>{
 socket.emit('newMessage',generateMessage('Admin', 'Welcome to the chat app'));
 //Below code will give notification if any new user joins the chat app
 socket.broadcast.emit('newMessage',generateMessage('Admin', 'New user joined'));
-socket.on('createMessage',(message)=>{
+socket.on('createMessage',(message,callback)=>{
   console.log('createMessage',message);
   io.emit('newMessage',generateMessage(message.from,message.text));
+callback('This is from the server.');
 //------Below commented code will broadcasting the message except the one who broadcast
   // socket.broadcast.emit('newMessage',{
   //   from:message.from,

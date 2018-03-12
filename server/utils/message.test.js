@@ -8,7 +8,8 @@ describe('generateMessage', () => {
     var text = 'Some message';
     var message = generateMessage(from, text);
 
-    expect(message.createdAt).toBeA('number');
+    expect(message.createdAt).toBeA('number');// There will be problem when you deal with latest version of expect
+
     expect(message).toInclude({from, text});
   });
 });
