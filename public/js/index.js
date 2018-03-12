@@ -16,12 +16,12 @@ console.log('Disconnected from Server.');
 // socket.on('newEmail',function (email){
 //   console.log('New Email send to server.',email);
 // });
-socket.emit('createMessage',{
-  from:"dev@gmail.com",
-  text:"Hello Mr. Dev"
-},function(data){
-  console.log('Done.',data);
-});
+// socket.emit('createMessage',{
+//   from:"dev@gmail.com",
+//   text:"Hello Mr. Dev"
+// },function(data){
+//   console.log('Done.',data);
+// });
 socket.on('newMessage',function (message){
   console.log('New Email send to server.',message);
   var li=jQuery('<li></li>');
