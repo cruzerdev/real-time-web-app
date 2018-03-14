@@ -1,4 +1,5 @@
 var socket=io();  //used for open a new connection between client and server
+
 socket.on('connect',function (){
 console.log('Connected to Server,');
 // socket.emit('createEmail',{
